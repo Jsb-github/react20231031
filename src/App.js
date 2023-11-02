@@ -67,7 +67,7 @@ function App() {
                 <Th>Lorem.</Th>
                 <Th>Culpa.</Th>
                 <Th>Quam.</Th>
-                <Th>Hic.</Th>
+                <Th isNumeric>Hic.</Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -75,7 +75,25 @@ function App() {
                 <Td>Lorem.</Td>
                 <Td>Molestias.</Td>
                 <Td>Animi?</Td>
-                <Td>Laudantium.</Td>
+                <Td isNumeric>Laudantium.</Td>
+              </Tr>
+              <Tr>
+                <Td>Lorem.</Td>
+                <Td>Molestias.</Td>
+                <Td>Animi?</Td>
+                <Td isNumeric>Laudantium.</Td>
+              </Tr>
+              <Tr>
+                <Td>Lorem.</Td>
+                <Td>Molestias.</Td>
+                <Td>Animi?</Td>
+                <Td isNumeric>Laudantium.</Td>
+              </Tr>
+              <Tr>
+                <Td>Lorem.</Td>
+                <Td>Molestias.</Td>
+                <Td>Animi?</Td>
+                <Td isNumeric>Laudantium.</Td>
               </Tr>
             </Tbody>
           </Table>
