@@ -1,21 +1,32 @@
 import React from "react";
-import { Input } from "@chakra-ui/react";
+import { Button, Center } from "@chakra-ui/react";
 
 function App(props) {
-  let text = "initial text";
-  function handleChange(e) {
-    // console.log("인풋값이 변경됨");
-    console.log(e.target.value);
-    text = e.target.value;
-    console.log("text", text);
+  function handleClick(e) {
+    // event bubbling 막는 메소드
+    e.stopPropagation();
+    console.log(e.target.className);
   }
-
   return (
-    <div>
-      <p>{text}</p>
-      <Input onChange={handleChange} />
-      <Input onChange={handleChange} />
-    </div>
+    <Center
+      onClick={handleClick}
+      className="outerBox"
+      w="200px"
+      h="200px"
+      bg="gold"
+    >
+      <Center
+        onClick={handleClick}
+        className="innerBox"
+        w="100px"
+        h="100px"
+        bg="blue"
+      >
+        <Button onClick={handleClick} className="button" colorScheme="yellow">
+          Button
+        </Button>
+      </Center>
+    </Center>
   );
 }
 
