@@ -31,8 +31,8 @@ function App() {
 
   return (
     <div>
-      <Input valaue={person.name} onChange={handleNameChange} />
-      <Input valaue={person.city} onChange={handleCityChange} />
+      <Input value={person.name} onChange={handleNameChange} />
+      <Input value={person.city} onChange={handleCityChange} />
       <Text>
         {person.name}은 {person.city}에 삽니다
       </Text>
