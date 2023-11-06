@@ -1,43 +1,29 @@
-import React from "react";
-import { Box, List, ListItem } from "@chakra-ui/react";
+import React, { useState } from "react";
+import { Button, Input, List, ListItem } from "@chakra-ui/react";
 
 function App(props) {
-  const arr = ["pizza", "돈까스", "햄버거"];
-  const arr2 = ["손흥민", "이강인", "김민재"];
-  const arr3 = ["라떼", "아메리카노", "카푸치노"];
-  const arr4 = [
-    { id: 0, name: "라뗴" },
-    { id: 1, name: "아메리카노" },
-    { id: 2, name: "카푸치노" },
-  ];
+  const [coffees, setCoffees] = useState(["라뗴"]);
+  const [text, setText] = useState("");
 
-  const listItems = arr.map((item, index) => (
-    <ListItem key={index}>{item}</ListItem>
-  ));
+  function handleButtonClick() {
+    // 직전 상태 배열을 조작하면 안되고
+    // coffees.push(text);
 
+    // 새 배열을 만들어서 set state 해야 함
+    const newCoffees = [...coffees]; // 배열 복사
+    newCoffees.push(text);
+
+    setCoffees(newCoffees);
+  }
   return (
     <div>
-      <Box mb={3}>
-        <List>
-          {listItems}
-          {/* 손흥민 이강인 김민재 */}
-        </List>
-      </Box>
-      <Box mb={3}>
-        <List>
-          {arr2.map((i, index) => (
-            <ListItem key={index}>{i}</ListItem>
-          ))}
-          ;
-        </List>
-      </Box>
-      <Box mb={3}>
-        <List>
-          {arr3.map((e, i) => (
-            <ListItem key={i}>{e}</ListItem>
-          ))}
-        </List>
-      </Box>
+      <Input value={text} onChange={(e) => setText(e.target.value)} />
+      <Button onClick={handleButtonClick}>추가</Button>
+      <List>
+        {coffees.map((e, index) => (
+          <ListItem key={index}>{e}</ListItem>
+        ))}
+      </List>
     </div>
   );
 }
