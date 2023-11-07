@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { Button } from "@chakra-ui/react";
+import axios from "axios";
+import { theme } from "@chakra-ui/react";
 
 function App(props) {
-  const [number, setNumber] = useState(0);
-
-  console.log("useEffect 밖의 로그", number);
-  // 컴포넌트 외부 시스템과 작업할 떄
-  // 주로 ajax로 데이터를 가져올 때
+  const [myState, setMyState] = useState();
   useEffect(() => {
-    console.log("이펙트의 첫번째 파라미터 함수 실행됨", number);
+    axios
+      .get("/api/main1/sub1")
+      .then((response) => response.data)
+      .then((data) => setMyState(data))
+      .catch((error) => console.log(error));
   }, []);
-  return (
-    <div>
-      <Button onClick={() => setNumber(number + 1)}>증가</Button>
-      <p>{number}</p>
-    </div>
-  );
+
+  return <div>{myState}</div>;
 }
 
 export default App;
