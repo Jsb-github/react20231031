@@ -1,22 +1,6 @@
-import React, { createContext, useContext, useState } from "react";
-import { Button, Text } from "@chakra-ui/react";
-
-function Acomp() {
-  // const value = useContext(MessageContext);
-  const { setMessage } = useContext(MessageContext);
-  return (
-    <Button onClick={() => setMessage("변경된 메시지")}>
-      메시지 변경하기!!!
-    </Button>
-  );
-}
-
-function Bcomp() {
-  //3. context 사용하기 : useContext
-  // const value = useContext(MessageContext);
-  const { message } = useContext(MessageContext);
-  return <Text>{message}</Text>;
-}
+import React, { createContext, useState } from "react";
+import { Bcomp } from "./Bcomp";
+import { Acomp } from "./Acomp";
 
 function App(props) {
   const [message, setMessage] = useState("초기 상태 메세지");
@@ -33,5 +17,5 @@ function App(props) {
 }
 
 //1. context 만들기 : crateContext(null)
-const MessageContext = createContext(null);
+export const MessageContext = createContext(null);
 export default App;
