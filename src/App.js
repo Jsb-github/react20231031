@@ -1,62 +1,67 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   createBrowserRouter,
   createRoutesFromElements,
-  Link,
   Outlet,
   Route,
   RouterProvider,
   useNavigate,
+  useSearchParams,
 } from "react-router-dom";
-import { Box, Button, Flex } from "@chakra-ui/react";
+import { Box, Button, Text } from "@chakra-ui/react";
+import axios from "axios";
 
-function HomeComponent() {
-  // 경로 이동시 useNavigate hook 사용 해야함
-  const navigate = useNavigate();
+function Acomp() {
+  const [customer, setCustomer] = useState(null);
+  // query string 을 얻기
+  const [searchParams] = useSearchParams();
+  // console.log(searchParams);
+  // console.log(searchParams.get("id"));
+  //
+  // console.log(searchParams.toString());
+
+  useEffect(() => {
+    axios
+      .get(`/api/main1/sub4?${searchParams.toString()}`)
+      .then((response) => setCustomer(response.data));
+  }, [searchParams]);
 
   return (
     <Box>
-      <Flex gap={"10px"}>
-        <Box>
-          {/* 경로 이동시 javascript 코드를 그냥 사용하면 안됨*/}
-          <Button onClick={() => (window.location.href = "/apath")}>
-            a로 가기
-          </Button>
-        </Box>
-        <Box>
-          <Button onClick={() => (window.location.href = "/bpath")}>
-            b로 가기
-          </Button>
-        </Box>
-
-        <Box>
-          <Button onClick={() => navigate("/apath")}> A로 가기</Button>
-        </Box>
-        <Box>
-          <Button onClick={() => navigate("/bpath")}> B로 가기</Button>
-        </Box>
-      </Flex>
-      <Outlet />
+      {customer && (
+        <Text>
+          {searchParams.get("id")} 번 고객명{customer.name}
+        </Text>
+      )}
     </Box>
   );
 }
 
-function Acomp() {
-  return <Box>A컴포넌트</Box>;
-}
-
-function Bcomp() {
-  return <Box>b컴포넌트</Box>;
-}
-
 const routes = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<HomeComponent />}>
-      <Route path="apath" element={<Acomp />} />
-      <Route path="bpath" element={<Bcomp />} />
+    <Route path="/" element={<Home />}>
+      <Route path="path1" element={<Acomp />} />
     </Route>,
   ),
 );
+
+function Home() {
+  const navigate = useNavigate();
+
+  return (
+    <Box>
+      <Box>
+        <Button onClick={() => navigate("/path1?id=1")}>1번 고객 보기</Button>
+        <Button onClick={() => navigate("/path1?id=2")}>2번 고객 보기</Button>
+        <Button onClick={() => navigate("/path1?id=3")}>3번 고객 보기</Button>
+      </Box>
+      <Box>
+        <Outlet />
+      </Box>
+    </Box>
+  );
+}
+
 function App(props) {
   return <RouterProvider router={routes} />;
 }
