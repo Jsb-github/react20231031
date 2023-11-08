@@ -12,10 +12,14 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.0",
     "framer-motion": "^10.16.4",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
     "prettier": "^3.0.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.18.0",
     "react-scripts": "5.0.1",
+    "sort-by": "^1.2.0",
     "use-immer": "^0.9.0",
     "web-vitals": "^2.1.4"
   },
@@ -43,6 +47,5 @@
       "last 1 safari version"
     ]
   },
-
-  "proxy": "http://loaclhost:8080"
+  "proxy": "http://localhost:8080"
 }
