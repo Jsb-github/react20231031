@@ -26,7 +26,6 @@ function HomeComponent() {
           <Link to={"/apath"}>에이로 가기</Link>
         </Box>
         <Box>
-          {" "}
           <Link to={"/bpath"}>b로 가기</Link>
         </Box>
       </Flex>
